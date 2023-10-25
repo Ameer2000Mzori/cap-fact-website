@@ -1,0 +1,120 @@
+.navbar {
+  display: flex;
+  background-color: #0b2239;
+  color: white;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+}
+
+.navbrandlogo {
+  height: 65px;
+}
+
+.togglebtn {
+  position: absolute;
+  top: 1.7rem;
+  right: 1.7rem;
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+  display: none;
+}
+
+.menu-btn-img {
+  height: 30px;
+  width: 30px;
+}
+
+.menu-btn-img:hover {
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.menu-btn-img:active {
+  height: 31px;
+  width: 31px;
+  cursor: pointer;
+}
+
+.navlinks ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navlinks ul li {
+  padding: 1rem;
+}
+
+.navlinks ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navlinks ul li a:hover {
+  position: relative;
+  bottom: 2px;
+  color: rgb(212, 231, 248);
+}
+
+.navlinks ul li a:active {
+  position: relative;
+  bottom: 2px;
+  color: rgb(84, 84, 85);
+}
+
+@media (max-width: 769px) {
+  .navbar {
+    display: flex;
+    background-color: #0b2239;
+    color: white;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: start;
+    align-items: start;
+    padding: 5px;
+  }
+
+  .togglebtn {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .navlinks {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    display: none;
+  }
+
+  .navlinks ul {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 99%;
+  }
+
+  .navlinks ul {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    height: 800px;
+  }
+
+  .navlinks ul li {
+    width: 99%;
+  }
+
+  .navlinks .active {
+    display: flex;
+  }
+}
