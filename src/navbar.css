@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.navbar.active {
+  background-color: #0e10114f;
+}
+
 .navbrandlogo {
   height: 65px;
 }
@@ -87,15 +91,7 @@
   }
 
   .navlinks {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    width: 99%;
     display: none;
-  }
-
-  .navlinks ul {
-    display: flex;
     text-align: center;
     align-items: center;
     width: 99%;
@@ -103,18 +99,30 @@
 
   .navlinks ul {
     display: flex;
+    margin-top: 100px;
     text-align: center;
     align-items: center;
     position: relative;
     flex-direction: column;
     height: 800px;
-  }
-
-  .navlinks ul li {
     width: 99%;
   }
 
-  .navlinks .active {
-    display: flex;
+  .navlinks ul li {
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    padding: 0;
+  }
+
+  .navlinks ul li a {
+    font-family: "Poppins", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+  }
+
+  .navlinks.active {
+    display: block;
   }
 }
