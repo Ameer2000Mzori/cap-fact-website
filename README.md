@@ -18,7 +18,7 @@
 
 # 📖 My Portafolio <a name="about-project"></a>
 
-> "This website is built using HTML, CSS, JavaScript, and React.js. The project is a requirement for a Udemy course. With this project, you can like, comment, dislike, or super like. Additionally, you can leave comments on your preferred categories. Lastly, it comes with an API integration! Goodbye..."
+> "This website is built using HTML, CSS, JavaScript, React.js and SupaBase API. The project is a requirement for a Udemy course. With this project, you can like, comment, dislike, or super like. Additionally, you can leave comments on your preferred categories. Lastly, it comes with an API integration..."
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -30,9 +30,10 @@
         <li><a href="https://en.wikipedia.org/wiki/HTML">Html</a></li>
         <li><a href="https://en.wikipedia.org/wiki/CSS">Css</a></li>
         <li><a href="https://nl.wikipedia.org/wiki/JavaScript">Javascript</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/HTML">Html/CSS Linters</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/CSS">WEB PACK</a></li>
-        <li><a href="https://nl.wikipedia.org/wiki/JavaScript">REACT.JS</a></li>
+                <li><a href="https://stylelint.io/">Html/CSS Linters</a></li>
+        <li><a href="https://webpack.js.org/">WEB PACK</a></li>
+        <li><a href="https://react.dev/">REACT.JS</a></li>
+                <li><a href="https://supabase.com/">SupaBase API</a></li>
     
   </ul>
 </details>

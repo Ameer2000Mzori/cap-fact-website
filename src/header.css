@@ -94,6 +94,7 @@
   font-size: 15px;
   font-weight: 600;
 }
+
 .input-el:focus {
   border-style: solid;
   border-width: 1px;
@@ -153,7 +154,6 @@
   border-radius: 25px;
   width: 200px;
   height: 40px;
-  border-style: none;
   background-color: #0b2239;
   transition: all;
   color: white;
@@ -208,7 +208,7 @@
   font-weight: 600;
   padding: 1px;
   margin-left: 5px;
-  color: #000000;
+  color: #000;
   list-style: none;
 }
 
@@ -275,4 +275,81 @@
 .button-wrap button:active {
   color: white;
   background-color: #3a3b3b;
+}
+
+@media (max-width: 950px) {
+  .header-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #112b44;
+    border-radius: 15px;
+    background-color: #ffffffb6;
+    padding: 5%;
+  }
+
+  .formwrap {
+    background-color: #0b2239;
+    border-radius: 25px;
+    padding: 5px;
+    gap: 5px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #first-input {
+    width: 75%;
+  }
+
+  #second-input {
+    width: 50%;
+  }
+
+  .input-el {
+    margin: 5px;
+    padding: 0.5rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .postbtn {
+    border-style: none;
+    width: 105px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 15px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .list-aside-wrap {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    gap: 15px;
+    justify-content: space-between;
+  }
+
+  .asidebtn {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .lists {
+    width: 100%;
+  }
 }
