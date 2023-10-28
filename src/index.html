@@ -6,6 +6,7 @@
     <title>FACT Or Cap</title>
     <link rel="stylesheet" href="navbar.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="header.css" />
   </head>
   <body>
     <header>
@@ -24,6 +25,101 @@
         </div>
       </nav>
     </header>
+    <section class="header">
+      <section class="header-wrap">
+        <div class="btnwrap">
+          <h1 class="title">TODAY I LEARNED</h1>
+          <button class="showbtn">SHOW</button>
+        </div>
+
+        <form class="formwrap" action="">
+          <input
+            id="first-input"
+            class="input-el"
+            type="text"
+            placeholder="share your facts..."
+            name=""
+            id=""
+          />
+          <div class="quantity-of-letters-left">200</div>
+          <input
+            id="second-input"
+            class="input-el"
+            type="text"
+            placeholder="share your link..."
+            name=""
+            id=""
+          />
+          <select class="selection-menu">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option>
+          </select>
+          <button class="postbtn">POST</button>
+        </form>
+
+        <div class="list-aside-wrap">
+          <aside class="asidebtn">
+            <button id="catagorybtn" class="all">ALL</button>
+            <button id="catagorybtn" class="Techbtn">Techhnology</button>
+            <button id="catagorybtn" class="Sciencebtn">Science</button>
+            <button id="catagorybtn" class="Financebtn">Finance</button>
+            <button id="catagorybtn" class="Societybtn">Society</button>
+            <button id="catagorybtn" class="Enterbtn">Entertainment</button>
+            <button id="catagorybtn" class="healthbtn">Health</button>
+            <button id="catagorybtn" class="Historybtn">History</button>
+            <button id="catagorybtn" class="Newsbtn">News</button>
+          </aside>
+          <div class="lists">
+            <ul>
+              <li>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                  soluta quia delectus error, blanditiis labore
+                  <br />
+                  <a
+                    href="https://www.youtube.com/watch?v=O5p2ZX7UU9w&t=207s&ab_channel=dreamscape"
+                    target="_blank"
+                    >(VIDEO LINK)</a
+                  >
+                </p>
+                <div class="intract-btn-wrap">
+                  <strong>#HEALTH</strong>
+                  <div class="button-wrap">
+                    <button class="likebtn">👍0</button>
+                    <button class="superlikebtn">🔥4</button>
+                    <button class="dislikebtn">👎5</button>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
+                  soluta quia delectus error, blanditiis labore
+                  <br />
+                  <a
+                    href="https://www.youtube.com/watch?v=O5p2ZX7UU9w&t=207s&ab_channel=dreamscape"
+                    target="_blank"
+                    >(VIDEO LINK)</a
+                  >
+                </p>
+                <div class="intract-btn-wrap">
+                  <strong class="this-is-cap">#THIS IS CAP</strong>
+                  <strong class="catagory-list">#HEALTH</strong>
+                  <div class="button-wrap">
+                    <button class="likebtn">👍0</button>
+                    <button class="superlikebtn">🔥4</button>
+                    <button class="dislikebtn">👎5</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </section>
+    <script src="showHandler.js"></script>
     <script src="navbar.js"></script>
     <script src="index.js"></script>
   </body>
