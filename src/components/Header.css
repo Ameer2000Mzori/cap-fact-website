@@ -151,7 +151,7 @@ body.active {
   position: relative;
   flex-direction: column;
   width: 30%;
-  gap: 7px;
+  gap: 3px;
 }
 
 .all {
@@ -187,7 +187,6 @@ body.active {
 }
 
 .lists {
-  display: flex;
   text-align: center;
   align-items: center;
   flex-direction: column;
@@ -204,7 +203,7 @@ body.active {
   list-style: none;
 }
 
-.lists ul li {
+.lilist {
   text-align: start;
   align-items: center;
   background-color: #fdfeff;
@@ -214,7 +213,7 @@ body.active {
   list-style: none;
 }
 
-.lists ul li p {
+.li-p {
   font-size: 15px;
   font-weight: 600;
   padding: 1px;

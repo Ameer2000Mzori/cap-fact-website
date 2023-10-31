@@ -16,14 +16,25 @@ const CATEGORIES = [
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [fact, setFact] = useState([]);
+  const [currentCatgo, setCurrentCatgo] = useState("all");
 
-  useEffect(function () {
-    async function getFacts() {
-      let { data: facts, error } = await supabase.from("facts").select("*");
-      setFact(facts);
-    }
-    getFacts();
-  }, []);
+  useEffect(
+    function () {
+      let qury = supabase.from("facts").select("*");
+      if (currentCatgo !== "all") {
+        qury.eq("category", currentCatgo);
+      }
+      async function getFacts() {
+        let { data: facts, error } = await qury
+
+          .order("like", { ascending: false })
+          .limit(1000);
+        setFact(facts);
+      }
+      getFacts();
+    },
+    [currentCatgo]
+  );
 
   return (
     <>
@@ -44,13 +55,13 @@ const Header = () => {
 
           <div className="list-aside-wrap">
             <aside className="asidebtn">
-              <AsideButtons></AsideButtons>
+              <AsideButtons setCurrentCatgo={setCurrentCatgo}></AsideButtons>
             </aside>
 
             <div className="lists">
               <ul id="ul-list">
                 {fact.map((fact) => (
-                  <List key={fact.id} fact={fact}></List>
+                  <List setFact={setFact} key={fact.id} fact={fact} />
                 ))}
               </ul>
             </div>
@@ -61,15 +72,28 @@ const Header = () => {
   );
 };
 
-const AsideButtons = () => {
+const AsideButtons = ({ setCurrentCatgo }) => {
   return (
     <>
+      <button
+        id="catagorybtn"
+        className="all"
+        onClick={() => {
+          setCurrentCatgo("all");
+        }}
+      >
+        {" "}
+        all
+      </button>
       {CATEGORIES.map((cat) => (
         <button
           key={cat.name}
           id="catagorybtn"
           style={{ backgroundColor: cat.color }}
           className="all"
+          onClick={() => {
+            setCurrentCatgo(cat.name);
+          }}
         >
           {cat.name}
         </button>
@@ -80,29 +104,34 @@ const AsideButtons = () => {
 
 const FormInfo = ({ setFact, setMenuOpen }) => {
   const [text, setText] = useState("");
-  const [link, setLink] = useState("");
-  const [catgo, setCatgo] = useState("technology");
+  const [source, setLink] = useState("");
+  const [category, setCatgo] = useState("technology");
   const date = new Date();
   const thisyear = date.getFullYear();
-  function submitHandler(e) {
+
+  async function submitHandler(e) {
     e.preventDefault();
 
-    if (!text || !link || catgo || text.length <= 200) {
-      const factObj = {
-        id: Math.round(Math.random() * 100000000),
-        text,
-        source: link,
-        category: catgo,
-        like: 0,
-        super_like: 0,
-        dislike: 0,
-        createdIn: thisyear,
-      };
-      setFact((facts) => [factObj, ...facts]);
-      setText("");
-      setLink("");
-      setCatgo("technology");
-      setMenuOpen(false);
+    if (text && source && category) {
+      const { data: newFact, error } = await supabase
+        .from("facts")
+        .insert([{ text, link: source, category }])
+        .select();
+
+      if (error) {
+        console.error("Error inserting the fact:", error);
+      } else {
+        console.log("New fact inserted:", newFact);
+
+        setFact((facts) => [newFact[0], ...facts]);
+
+        setText("");
+        setLink("");
+        setCatgo("technology");
+        setMenuOpen(false);
+      }
+    } else {
+      console.log("Please fill in all fields");
     }
   }
 
@@ -123,12 +152,12 @@ const FormInfo = ({ setFact, setMenuOpen }) => {
           className="input-el"
           type="text"
           placeholder="share your link..."
-          value={link}
+          value={source}
           onChange={(e) => setLink(e.target.value)}
         />
         <select
           className="selection-menu"
-          value={catgo}
+          value={category}
           onChange={(e) => setCatgo(e.target.value)}
         >
           {CATEGORIES.map((cat) => (
@@ -143,14 +172,30 @@ const FormInfo = ({ setFact, setMenuOpen }) => {
   );
 };
 
-const List = ({ fact }) => {
+const List = ({ fact, setFact }) => {
+  async function handleVote(columnName) {
+    const { data: updatedFact, error } = await supabase
+      .from("facts")
+      .update({ [columnName]: fact[columnName] + 1 })
+      .eq("id", fact.id)
+      .select();
+
+    if (!error)
+      setFact((facts) =>
+        facts.map((f) => (f.id === fact.id ? updatedFact[0] : f))
+      );
+    if (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
-      <li id={fact.id}>
-        <p>
+      <li className="lilist" id={fact.id}>
+        <p className="li-p">
           {fact.text}
           <br />
-          <a href={fact.link} target="_blank">
+          <a href={fact.source} target="_blank">
             (VIDEO LINK)
           </a>
         </p>
@@ -158,9 +203,21 @@ const List = ({ fact }) => {
           <strong className="catagory-list">{fact.category}</strong>
 
           <div className="button-wrap">
-            <button className="likebtn">👍{fact.like}</button>
-            <button className="superlikebtn">🔥{fact.super_like}</button>
-            <button className="dislikebtn">👎{fact.dislike}</button>
+            <button onClick={() => handleVote("like")} className="likebtn">
+              👍{fact.like}
+            </button>
+            <button
+              onClick={() => handleVote("super_like")}
+              className="superlikebtn"
+            >
+              🔥{fact.super_like}
+            </button>
+            <button
+              onClick={() => handleVote("dislike")}
+              className="dislikebtn"
+            >
+              👎{fact.dislike}
+            </button>
           </div>
         </div>
       </li>
@@ -169,39 +226,3 @@ const List = ({ fact }) => {
 };
 
 export default Header;
-
-//example obj :
-
-// const initialFacts = [
-//   {
-//     id: 1,
-//     text: "React is being developed by Meta (formerly facebook)",
-//     source: "https://opensource.fb.com/",
-//     category: "technology",
-//     like: 24,
-//     super_like: 9,
-//     dislike: 4,
-//     createdIn: 2021,
-//   },
-//   {
-//     id: 2,
-//     text: "Millennial dads spend 3 times as much time with their kids than their fathers spent with them. In 1982, 43% of fathers had never changed a diaper. Today, that number is down to 3%",
-//     source:
-//       "https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids",
-//     category: "society",
-//     like: 11,
-//     super_like: 2,
-//     dislike: 0,
-//     createdIn: 2019,
-//   },
-//   {
-//     id: 3,
-//     text: "Lisbon is the capital of Portugal",
-//     source: "https://en.wikipedia.org/wiki/Lisbon",
-//     category: "society",
-//     like: 8,
-//     super_like: 3,
-//     dislike: 1,
-//     createdIn: 2015,
-//   },
-// ];
