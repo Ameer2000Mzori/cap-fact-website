@@ -115,7 +115,7 @@ const FormInfo = ({ setFact, setMenuOpen }) => {
     if (text && source && category) {
       const { data: newFact, error } = await supabase
         .from("facts")
-        .insert([{ text, link: source, category }])
+        .insert([{ text, source, category }])
         .select();
 
       if (error) {
