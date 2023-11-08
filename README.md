@@ -16,7 +16,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 My Portafolio <a name="about-project"></a>
+# 📖 Cap-Fact-Website <a name="about-project"></a>
 
 > "This website is built using HTML, CSS, JavaScript, React.js and SupaBase API. The project is a requirement for a Udemy course. With this project, you can like, comment, dislike, or super like. Additionally, you can leave comments on your preferred categories. Lastly, it comes with an API integration..."
 
